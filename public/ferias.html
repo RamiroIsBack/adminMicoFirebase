@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+  <title>
+    Mico Admin
+  </title>
+  <meta charset='utf-8' />
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+</head>
+<body class ='container'>
+  <br/>
+  <nav class="navbar bg-faded">
+    <div class='container-fluid'>
+      <ul class = 'nav nav-pills navbar-right'>
+        <li class="nav-item pull-right">
+         <button onclick = 'salir() ' type="button" class="btn btn-danger">cerrar sesion</button>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav">
+        <li class="nav-item " >
+          <a class="nav-link"  href='agregarCreacion.html'>agregar creacion</a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" href='creaciones.html'>Creaciones</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href='agregarFeria.html'>agregar feria</a>
+        </li>
+        <li class="nav-item active" style='border-style: inset'>
+          <a class="nav-link" href='ferias.html'>Ferias</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <hr/>
+  <div class="container">
+    <button onclick='this.disabled =true; imprimirFerias()' class="btn btn-success text-center" style="display: block; width: 100%;">Mostrar ferias de la base de datos</button>
+  </div>
+  <ul class ='list-group' id = 'lista'>
+
+
+  </ul>
+</body>
+
+
+<script src='https://www.gstatic.com/firebasejs/4.1.3/firebase.js'></script>
+
+<script type="text/javascript" src='feria.js'></script>
+
+<!-- CDN d bootstrapNative fuck JQuerry!-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.11/bootstrap-native-v4.min.js"></script>
+
+</html>
