@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+  <title>
+    Mico Admin
+  </title>
+  <meta charset='utf-8' />
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+  <br/>
+  <div class ='container'>
+    <nav class="navbar bg-faded">
+      <div class='container-fluid'>
+        <ul class = 'nav nav-pills navbar-right'>
+          <li class="nav-item pull-right">
+           <button onclick = 'salir() ' type="button" class="btn btn-danger">cerrar sesion</button>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link"  href='agregarCreacion.html'>agregar creacion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='creaciones.html'>ver Creaciones</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href='agregarFeria.html'>agregar feria</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='ferias.html'>ver Ferias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='contenido.html'>editar contenido</a>
+          </li>
+          <li class="nav-item active" style='border-style: inset'>
+            <a class="nav-link" href='enlaces.html'>editar enlaces</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href='pedidos.html'>ver y editar Pedidos</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <br/>
+    <div class= 'jumbotron'>
+       <h2>Animo Alba! ya vamos acabando...</h2> <h4>aqui vas a editar todos los enlaces (mail, instagram, facebook...) de la pagina y tambien alguna cosa del tema de la compra </h4>
+    </div>
+    <!-- subir imagenes y datos de todo-->
+
+    <h3>Forma de contacto</h3>
+    <h6>si en la base de datos pones [no] ni saldra el icono, ni habr'a posibilidad de ir a esa informacion porque no tienes o porque no t interese mostrarla desde la web, y con poner un dato v'alido ya se activar'a</h6>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirContact(event)">
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">e-mail</label>
+          <div class="col-sm-9">
+            <textarea type="e-mail" rows="1" class="form-control" id="contactMail" placeholder="micocreaciones@gmail.com"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <p>e-mail de contacto en base de datos: </p>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="2" class='form-control' id ='contactMailDB' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">mete tu tlf de trabajo o pon: no para no mostrar nada </label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="1" class="form-control" id="contactPhone" placeholder="652223522"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <p>telefono de contacto en base de datos: </p>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="1" class='form-control' id ='contactPhoneDB' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+            <button type="button" onclick='imprimirContactDB()' class="col-sm-5 col-sm-offset-4 btn btn-success" >ver todos los datos de contacto en base de datos</button>
+        </div>
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">mete aqui los horarios de contacto</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="2" class="form-control" id="contactHours" placeholder="L-V de 10:00 a 18:00"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <p>horario de contacto en base de datos: </p>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="2" class='form-control' id ='contactHoursDB' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">direcci'on postal para devoluciones, o lo que sea</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="2" class="form-control" id="contactPost" placeholder="Rúa de Alexandre Bóveda, 2, 36210 Vigo, Pontevedra, España"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <p>direcci'on postal en base de datos:</p>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="2" class='form-control' id ='contactPostDB' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir datos de contacto</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <h3>Direcciones de redes sociales</h3>
+    <h6>si en la base de datos pones [no] ni saldra el icono, ni habr'a posibilidad de ir a esa informacion porque no tienes o porque no t interese mostrarla desde la web, y con poner un dato v'alido ya se activar'a</h6>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirUrlFacebook(event)">
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">pon aqui el link a tu facebook</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="1" class="form-control" id="urlFacebook" placeholder="https://www.facebook.com/micocreaciones.artesania/"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <button type="button" onclick='imprimirUrlFacebookDB()' class="btn btn-success pull-right" >ver link a Facebook: </button>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="2" class='form-control' id ='urlFacebookDB' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir enlace de Facebook</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirUrlTwiter(event)">
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">pon aqui el link a tu Twiter</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="2" class="form-control" id="urlTwiter" placeholder="https://twitter.com/mico_creaciones?lang=es"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <button type="button" onclick='imprimirUrlTwiterDB()' class="btn btn-success pull-right" >ver link a Twiter: </button>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="2" class='form-control' id ='urlTwiterDB' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir enlace de Twiter</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirUrlInstagram(event)">
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">pon aqui el link a tu Instagram</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="2" class="form-control" id="urlInstagram" placeholder="https://www.instagram.com/mico_disenhotextil/?hl=es"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <button type="button" onclick='imprimirUrlInstagramDB()' class="btn btn-success pull-right" >ver link a Instagram: </button>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="2" class='form-control' id ='urlInstagramDB' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir enlace de Instagram</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirUrlYoutube(event)">
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">pon aqui el link a tu Youtube</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="2" class="form-control" id="urlYoutube" placeholder="https://www.Youtube.com/mico_creaciones/"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <button type="button" onclick='imprimirUrlYoutubeDB()' class="btn btn-success pull-right" >ver link a Youtube: </button>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="2" class='form-control' id ='urlYoutubeDB' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir enlace de Youtube</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+  </div>
+</body>
+
+<script src='https://www.gstatic.com/firebasejs/4.1.3/firebase.js'></script>
+
+<script type="text/javascript" src='enlaces.js'></script>
+
+<!-- CDN d bootstrapNative fuck JQuerry!-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.11/bootstrap-native-v4.min.js"></script>
+
+</html>

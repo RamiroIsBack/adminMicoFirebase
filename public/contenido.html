@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+  <title>
+    Mico Admin
+  </title>
+  <meta charset='utf-8' />
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+  <br/>
+  <div class ='container'>
+    <nav class="navbar bg-faded">
+      <div class='container-fluid'>
+        <ul class = 'nav nav-pills navbar-right'>
+          <li class="nav-item pull-right">
+           <button onclick = 'salir() ' type="button" class="btn btn-danger">cerrar sesion</button>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link"  href='agregarCreacion.html'>agregar creacion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='creaciones.html'>ver Creaciones</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href='agregarFeria.html'>agregar feria</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='ferias.html'>ver Ferias</a>
+          </li>
+          <li class="nav-item active" style='border-style: inset'>
+            <a class="nav-link" href='contenido.html'>editar contenido</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='enlaces.html'>editar enlaces</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href='pedidos.html'>ver y editar Pedidos</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <br/>
+    <div class= 'jumbotron'>
+      <h2>hola Alba!</h2> <h4>aqui vas a editar el resto del contenido de la pagina, fotos y texto , hay contenido asignado a cada cosa, puedes borrar el contenido y meter uno nuevo, el texto que aparece donde tienes que escribir es solo ilustrativo para que tengas un ejemplo.<br/> tambien tienes un boton verde en cada apartado, para mostrar el texto y/o foto que ya hay en la base de datos que sale en campos inactivos (que no puedes rellenar) </h4>
+    </div>
+    <!-- subir imagenes y datos de todo-->
+    <h3>titulo, breve descripcion sobre Mico en pagina principal</h3>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirDescripcionMico(event)">
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">una linea que defina Mico</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="2" class="form-control" id="headlineMico" placeholder="Descubre la fusión entre la artesania clásica gallega y lo innovador de los diseños más vanguardistas"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="2" class='form-control' id ='headlineMicoBD' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label  class="col-sm-3 form-control-label">habla un poco m'as sobre Mico, 4 o 5 lineas (esta letra es m'as pequena en la pagina)</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="4" class="form-control" id="desarrolloMico" placeholder="Los productos de Mico no te dejarán indiferente, aunamos todos los esfuerzos en conseguir un producto de alta calidad, con diseño y desarrollo local y un precio asequible a todos los bolsillos, echa un vistazo y anímate a visitarnos en la próxima feria" required="required"></textarea>
+          </div>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-1 col-sm-offset-3">
+            <button type="button" onclick='imprimirHeadlineMicoBD()' class="btn btn-success pull-right" >ver titulo y desarrollo en base de datos:</button>
+          </div>
+          <div class="col-sm-8">
+            <textarea type="text" rows="4" id = 'desarrolloMicoDB' class="form-control" placeholder="aqui aparecerá el desarrollo sobre Mico en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir titulo y descripcion general sobre Mico</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <!-- subir imagenes y datos de todo-->
+    <h3>taller y logo artesania de galicia</h3>
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Fotos para Taller 1</h4>
+      <form name="1" onsubmit="SubirPicTaller(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">foto1 del Taller (2000x1300) </label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picTaller" name="1" onChange = 'guardarArchivoPicTaller(event)' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicTaller1' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameTaller1' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicTallerDB(event)' name="1" class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlPicTaller1DB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" name="1" style="display: block; width: 100%;">subir foto 1 del Taller</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Fotos para Taller 2</h4>
+      <form name="2" onsubmit="SubirPicTaller(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">foto2 del Taller (2000x1300) </label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picTaller" name="2" onChange = 'guardarArchivoPicTaller(event)' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicTaller2' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameTaller2' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicTallerDB(event)' name="2" class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlPicTaller2DB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" name="2" style="display: block; width: 100%;">subir foto 2 del Taller</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Fotos para Taller 3</h4>
+      <form name="3" onsubmit="SubirPicTaller(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">foto3 del Taller (2000x1300) </label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picTaller" name="3" onChange = 'guardarArchivoPicTaller(event)' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicTaller3' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameTaller3' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicTallerDB(event)' name="3" class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlPicTaller3DB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" name="3" style="display: block; width: 100%;">subir foto 3 del Taller</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Fotos para Taller 4</h4>
+      <form name="4" onsubmit="SubirPicTaller(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">foto4 del Taller (2000x1300) </label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picTaller" name="4" onChange = 'guardarArchivoPicTaller(event)' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicTaller4' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameTaller4' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicTallerDB(event)' name="4" class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlPicTaller4DB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" name="4" style="display: block; width: 100%;">subir foto 4 del Taller</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirDescripcionTaller(event)">
+        <h4 style="text-align: center;">Taller (descripcion larga)</h4>
+        <div class=" form-group row">
+          <textarea type="text" rows="4" class="form-control" id="descripcionTaller" placeholder="Introduce aqui todo el texto que quieras que salga en el ·Taller·
+          puedes poner todo tipo de carcteres, saltos de linea, mayusculas, lo que quieras" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-1 col-sm-offset-3">
+            <button type="button" onclick='imprimirDescripcionTallerBD()' class="btn btn-success pull-right" >ver texto anterior en base de datos:</button>
+          </div>
+          <div class="col-sm-8">
+            <textarea type="text" rows="4" id = 'descripcionTallerDB' class="form-control" placeholder="aqui aparecerá el texto de Taller que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir la descripcion general de Taller</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <br/>
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">logo de artesania de galicia</h4>
+      <form onsubmit="SubirLogoArtesania(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">el nombre de la foto sin espacios, foto mediana 300x150 es perfecto</label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="logoArtesania" onChange = 'guardarArchivoLogoArtesania()' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlLogoArtesania' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirLogoArtesaniaBD()' class="btn btn-success pull-right" >ver logo en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlLogoArtesaniaDB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir logo de Artesania</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <br/>
+
+    <h3 >Tipo de producto</h3>
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirNuevoTipo(event)">
+        <div class=" form-group row">
+            <h4 style="text-align: center;">Crea un nuevo Tipo de producto</h4>
+            <h6 style="text-align: center;">al crear un nuevo tipo aparecera para poder elegirlo al agregar creacion y podras subir una descripcion de el en el siguiente apartado</h6>
+            <div class="col-sm-4">
+              <h5 style="text-align: center;">Nuevo tipo de creacion</h5>
+            </div>
+            <div class="col-sm-8 form-group row">
+              <input type="text" rows="4" class="form-control" id="nuevoTipo" placeholder="nombre del tipo de creacion" required="required"></input>
+            </div>
+
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir nuevo tipo</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+
+      <form onsubmit="subirTxtTipo(event)">
+        <div class=" form-group row">
+          <h4 style="text-align: center;">descripcion de los tipos de creacion</h4>
+          <h6 style="text-align: center;">puedes cambiar la descripcion de algun tipo de creacion ya creado, pulsa en elegir tipo para ver los tipos que hay en la base de datos y selecciona uno</h6>
+          <div class="col-sm-6">
+            <div class="col-sm-12">
+              <button onclick='this.disabled =true ;seleccionarTipo()' class="btn btn-success text-center" style="display: block; width: 100%;">elegir tipo</button>
+            </div>
+
+
+            <div class="col-sm-11 " id='radioHome'>
+
+            </div>
+          </div>
+          <div class="col-sm-10">
+            <div class=" form-group row">
+              <textarea type="text" rows="4" class="form-control" id="descripcionTipo" placeholder="Introduce aqui la descripcion del tipo de creacion que hayas elegido de entre las opciones de la izquierda" required="required"></textarea>
+            </div>
+            <div class="form-group row" style="background-color: #F2F2F2">
+              <div class="col-sm-1 col-sm-offset-3">
+                <button type="button" onclick='imprimirDescripcionTipoBD()' class="btn btn-success pull-right" >ver descripcion en base de datos:</button>
+              </div>
+              <div class="col-sm-8">
+                <textarea type="text" rows="4" id = 'txtTipoDB' class="form-control" placeholder="aqui aparecer'a la descripcion del tipo de producto que hayas seleccionando a la izquiera (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir la descripcion del tipo seleccionado</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+
+    <h3>SOBRE MI</h3>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Foto principal de sobre mi</h4>
+      <form onsubmit="SubirFotoYheaderConocenos(event)">
+
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">el nombre de la foto sin espacios, foto grande 1600x1200 es perfecto</label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picConocenos" onChange = 'guardarArchivoPicConocenos()' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicConocenos' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameConocenos' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirFotoYheaderConocenosBD()' class="btn btn-success pull-right" >ver datos anteriores en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'picConocenosDB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir Foto principal de sobre mi</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirDescripcionConocenos(event)">
+        <h4 style="text-align: center;">Sobre mi (descripcion larga)</h4>
+        <div class=" form-group row">
+          <textarea type="text" rows="4" class="form-control" id="descripcionConocenos" placeholder="Introduce aqui todo el texto que quieras que salga en el ·Conocenos·
+          puedes poner todo tipo de carcteres, saltos de linea, mayusculas, lo que quieras" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-1 col-sm-offset-3">
+            <button type="button" onclick='imprimirDescripcionConocenosBD()' class="btn btn-success pull-right" >ver texto anterior en base de datos:</button>
+          </div>
+          <div class="col-sm-8">
+            <textarea type="text" rows="4" id = 'descripcionConocenosDB' class="form-control" placeholder="aqui aparecerá el texto de Conocenos que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir la descripcion general de sobre mi</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+
+    <br/>
+
+    <h3>CONTACTO</h3>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Foto principal de contacto</h4>
+      <form onsubmit="SubirFotoYheaderContacto(event)">
+
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">el nombre de la foto sin espacios, foto grande 1600x1200 es perfecto</label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picContacto" onChange = 'guardarArchivoPicContacto()' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicContacto' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameContacto' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirFotoYheaderContactoBD()' class="btn btn-success pull-right" >ver datos anteriores en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'picContactoDB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir Foto principal de Contacto</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirDescripcionContacto(event)">
+        <h4 style="text-align: center;">Contacto (descripcion larga)</h4>
+        <div class=" form-group row">
+          <textarea type="text" rows="4" class="form-control" id="descripcionContacto" placeholder="Introduce aqui todo el texto que quieras que salga en el ·Contacto·
+          puedes poner todo tipo de carcteres, saltos de linea, mayusculas, lo que quieras" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-1 col-sm-offset-3">
+            <button type="button" onclick='imprimirDescripcionContactoBD()' class="btn btn-success pull-right" >ver texto anterior en base de datos:</button>
+          </div>
+          <div class="col-sm-8">
+            <textarea type="text" rows="4" id = 'descripcionContactoDB' class="form-control" placeholder="aqui aparecerá el texto de Contacto que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir la descripcion general de Contacto</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+
+    <br/>
+
+
+    <h3>registrarse </h3>
+
+    <br/>
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">titulo y explicacion breve del tratamiento de los datos:</h4>
+      <h5>aunq luego hay un link para todo el texto de privacidad de datos aqui hacemos un miniresumen ya que tiene que dar su consentimiento
+      </h5>
+      <form onsubmit="SubirTituloYexplicacionRegistrarse(event)">
+        <div class=" form-group row">
+          <h5>titulo de la pagina para registrarse</h5>
+          <textarea type="text" rows="1" class="form-control" id="registrarseTitulo" placeholder="Esto solo te llevará un momento " required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="1" id = 'registrarseTituloDB' class="form-control" placeholder="titulo de registrarse en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+            <button type="button" onclick='imprimirRegistrarseDB()' class="col-sm-5 col-sm-offset-4 btn btn-success" >ver titulo y avance de privacidad de datos</button>
+        </div>
+        <div class=" form-group row">
+          <textarea type="text" rows="3" class="form-control" id="registrarseInfo" placeholder="Porfavor introduce tus datos.
+          Al registrarte podrás realizar tus pedidos, hacer encargos a ferias o suscribirte a la lista de emails exclusiva de amigos de Mico donde te informaremos de las últimas novedades" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="3" id = 'registrarseInfoDB' class="form-control" placeholder="aqui aparecerá el texto sobre lo que se puede obtener al registrarse que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir titulo e informacion sobre registrarse</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">foto de fondo de la pantalla de registrarse</h4>
+      <form onsubmit="SubirPicRegistrarse(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">el nombre de la foto sin espacios, foto grande 1600x1200 es perfecto</label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picRegistrarse" onChange = 'guardarArchivoPicRegistrarse()' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicRegistrarse' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameRegistrarse' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicRegistrarseDB()' class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlPicRegistrarseDB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">subir foto de fondo de Registrarse</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <h3>Comprar con Mico </h3>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">titulo y explicacion de lo q es comprar con Mico:</h4>
+      <h5>como los materiales son de alguna forma o la forma de confeccionar las prendas es local... algo que haga sentir bien al que esté realizando la compra :)
+      </h5>
+      <form onsubmit="SubirTituloYexplicacionPedido(event)">
+        <div class=" form-group row">
+          <h5>titulo de la pagina para pedidos</h5>
+          <textarea type="text" rows="1" class="form-control" id="pedidoTitulo" placeholder="Realizar tu pedido con Mico es fácil y comprometido con tu entorno" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="1" id = 'pedidoTituloDB' class="form-control" placeholder="titulo de Pedido en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+            <button type="button" onclick='imprimirPedidoDB()' class="col-sm-5 col-sm-offset-4 btn btn-success" >ver titulo y explicacion de Pedido en base de datos</button>
+        </div>
+        <div class=" form-group row">
+          <h5>más informacion (letra más pequeña)</h5>
+          <textarea type="text" rows="3" class="form-control" id="pedidoInfo" placeholder="Mico Creaciones tiene como objetivo hacer de tu compra un proceso fácil y cercano, te iremos guiando durante la compra y porsupuesto cualquier duda que tengas , no dudes en contactar con nosotros y trataremos de resolverlo" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="3" id = 'pedidoInfoDB' class="form-control" placeholder="aqui aparecerá el texto sobre realizar pedidos que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir titulo y explicacion de pantalla de comprar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">mensaje post venta y condiciones de devolución:</h4>
+
+      <form onsubmit="SubirTituloYexplicacionPostVenta(event)">
+        <div class=" form-group row">
+          <h5>titulo</h5>
+          <textarea type="text" rows="2" class="form-control" id="postVentaTitulo" placeholder="Gracias por confiar en nosotros!
+          seguiremos trabajando duro para mejorar la calidad y condiciones de nuestros productos" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="2" id = 'postVentaTituloDB' class="form-control" placeholder="titulo de post venta en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+            <button type="button" onclick='imprimirPostVentaDB()' class="col-sm-5 col-sm-offset-4 btn btn-success" >ver titulo y explicacion de Pedido en base de datos</button>
+        </div>
+        <div class=" form-group row">
+          <h5>condiciones (letra más pequeña)</h5>
+          <textarea type="text" rows="4" class="form-control" id="postVentaInfo" placeholder="Si hubiese cualquier problema de manufactura en el producto adquirido, Mico se hace cargo del coste del envio de vuelta y el posterior envio del producto reparado o sustituido sengún el caso.
+          Si el problema es le tallaje o que no te convence , siempre puedes devolverlo (si simplemente te lo has probado, tiene la etiqueta y no está deñado) eso sí , el envio corre de tu cuenta esta vez " required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="4" id = 'postVentaInfoDB' class="form-control" placeholder="aqui aparecerá el texto sobre post venta que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir titulo e informacion post venta</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Fotos para corousell 1</h4>
+      <form name="1" onsubmit="SubirPicCarousell(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">foto1 del carousell (2000x1300) </label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picCarousell" name="1" onChange = 'guardarArchivoPicCarousell(event)' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicCarousell1' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameCarousell1' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicCarousellDB(event)' name="1" class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlPicCarousell1DB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" name="1" style="display: block; width: 100%;">subir foto 1 del carousell</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Fotos para corousell 2</h4>
+      <form name="2" onsubmit="SubirPicCarousell(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">foto2 del carousell (2000x1300) </label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picCarousell" name="2" onChange = 'guardarArchivoPicCarousell(event)' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicCarousell2' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameCarousell2' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicCarousellDB(event)' name="2" class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlPicCarousell2DB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" name="2" style="display: block; width: 100%;">subir foto 2 del carousell</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Fotos para corousell 3</h4>
+      <form name="3" onsubmit="SubirPicCarousell(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">foto3 del carousell (2000x1300) </label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picCarousell" name="3" onChange = 'guardarArchivoPicCarousell(event)' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicCarousell3' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameCarousell3' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicCarousellDB(event)' name="3" class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlPicCarousell3DB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" name="3" style="display: block; width: 100%;">subir foto 3 del carousell</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Fotos para corousell 4</h4>
+      <form name="4" onsubmit="SubirPicCarousell(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">foto4 del carousell (2000x1300) </label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picCarousell" name="4" onChange = 'guardarArchivoPicCarousell(event)' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicCarousell4' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameCarousell4' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicCarousellDB(event)' name="4" class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-4">
+            <img src="" id = 'urlPicCarousell4DB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" name="4" style="display: block; width: 100%;">subir foto 4 del carousell</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">Fotos para corousell 5</h4>
+      <form name="5" onsubmit="SubirPicCarousell(event)">
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">foto5 del carousell (2000x1300) </label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picCarousell" name="5" onChange = 'guardarArchivoPicCarousell(event)' required="required"/>
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlPicCarousell5' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameCarousell5' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="col-sm-4 col-sm-offset-4">
+            <button type="button" onclick='imprimirPicCarousellDB(event)' name="5" class="btn btn-success pull-right" >ver foto en base de datos:</button>
+          </div>
+          <div class="col-sm-5">
+            <img src="" id = 'urlPicCarousell5DB' class="img-responsive" alt="foto en base de datos" style="height: 80px" />
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" name="5" style="display: block; width: 100%;">subir foto 5 del carousell</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <br/>
+
+
+  </div>
+</body>
+
+
+<script src='https://www.gstatic.com/firebasejs/4.1.3/firebase.js'></script>
+
+<script type="text/javascript" src='contenido.js'></script>
+
+<!-- CDN d bootstrapNative fuck JQuerry!-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.11/bootstrap-native-v4.min.js"></script>
+
+
+</html>

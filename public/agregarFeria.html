@@ -26,20 +26,29 @@
             <a class="nav-link"  href='agregarCreacion.html'>agregar creacion</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='creaciones.html'>Creaciones</a>
+            <a class="nav-link" href='creaciones.html'>ver Creaciones</a>
           </li>
           <li class="nav-item active" style='border-style: inset'>
             <a class="nav-link" href='agregarFeria.html'>agregar feria</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='ferias.html'>Ferias</a>
+            <a class="nav-link" href='ferias.html'>ver Ferias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='contenido.html'>editar contenido</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='enlaces.html'>editar enlaces</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href='pedidos.html'>ver y editar Pedidos</a>
           </li>
         </ul>
       </div>
     </nav>
     <br/>
     <div class= 'jumbotron'>
-      <h2>hola Alba!</h2> <h4>introduce aqui todas los detalles de una nueva feria y subelo a la base de datos</h4>
+      <h2>hola Alba!</h2> <h4>introduce aqui todas los detalles de una nueva feria y subelo a la base de datos, el texto que aparece donde tienes que escribir es solo ilustrativo para que tengas un ejemplo</h4>
     </div>
     <!-- subir imagenes y datos de todo-->
     <div>
@@ -47,53 +56,78 @@
         <div class="form-group row">
           <label  class="col-sm-4 form-control-label">nombre que aparecer'a como t'itulo</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="nombre" placeholder="feria del arte celta" required="required">
+            <input type="text" class="form-control" id="nombre" placeholder="feria del arte celta" required="required"/>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-4 form-control-label">el nombre de la foto sin espacios, foto grande 1600x1200 es perfecto</label>
           <div class="col-sm-4">
-            <input type="file" class="form-control" id="pic" onChange = 'guardarArchivo()' required="required">
+            <input type="file" class="form-control" id="pic" onChange = 'guardarArchivo()' required="required"/>
           </div>
           <div class="col-sm-4">
             <input type='text' class='form-control' id ='url' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoName' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-4 form-control-label" >fecha (dd/mm/aa)</label>
+          <label class="col-sm-4 form-control-label" >fecha (dd/mm/aaaa)</label>
           <div class="col-sm-8">
-            <input type="text" class="form-control" id="fecha" placeholder="12/07/21" required="required">
+            <input type="text" class="form-control" id="fecha" placeholder="12/07/2021" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label" >fecha final (dd/mm/aaaa)</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="fechaFinal" placeholder="19/07/2021" required="required"></input>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 form-control-label">ciudad/pueblo</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="lugar" placeholder="Vigo" required="required">
+            <input type="text" class="form-control" id="lugar" placeholder="Vigo" required="required"></input>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 form-control-label">direccion (inequivoca en google maps)</label>
+          <label class="col-sm-2 form-control-label">direccion (puede tener explicaciones o lo que quieras)</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="direccion" placeholder="Avenida de Castrelos, 22 , Vigo " required="required">
+            <input type="text" class="form-control" id="direccion" placeholder="Avenida de Castrelos 12, junto a la caseta de sacar los tickets para el tranvia " required="required"></input>
           </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 form-control-label">pagina web de la feria (si no tiene o no la sabes pon: desconocida</label>
+          <label class="col-sm-2 form-control-label">explicacion de la direccion en galego</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="urlFeria" placeholder="https://www.google.es" required="required">
+            <input type="text" class="form-control" id="direccionGalego" placeholder="Avenida de Castrelos 12, junto a la caseta de sacar los tickets en galego " required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 form-control-label">pega lo que aparece como direccion cunado buscas la direccion en google maps, asegurate de q por en medio hay algo parecido a: @42.5505684,-6.60403,</label>
+          <div class="col-sm-10">
+            <textarea type="text" class="form-control" id="mapsLink" placeholder="https://www.google.es/maps/place/Av.+de+Castrelos,+12,+36210+Vigo,+PO/@42.219777,-8.7349733,17z/data=!3m1!4b1!4m5!3m4!1s0xd2f620994346fb7:0xc3f146f358a8e02!8m2!3d42.219777!4d-8.7327846" required="required"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 form-control-label">pagina web de la feria o algun articulo que hable sobre ella, si no encuentras pon: desconocida</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="urlFeria" placeholder="https://www.google.es" required="required"></input>
           </div>
         </div>
         <div class="form-group row">
           <label class="col-sm-2 form-control-label">descripcion</label>
           <div class="col-sm-10">
-            <textarea type="text" rows="3" class="form-control" id="descripcion" placeholder="Esta nueva falda es un c'omodo dise;o totalmente adaptable a todo tipo de cinturas con lo que es talla 'unica. Hecha con una serie de telas que traje de un viaje a Paris" required="required"></textarea>
+            <textarea type="text" rows="3" class="form-control" id="descripcion" placeholder="Feria dedicada a la historia de galicia, reune a los mejores artesanos de todos los peblos gallegos y tendr'a lugar durante los tres primeros fines de semana del mes. llevar'e todo el g'enero disponible en la pagina web." required="required"></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-2 form-control-label">descripcion en gallego</label>
+          <div class="col-sm-10">
+            <textarea type="text" rows="3" class="form-control" id="descripcionGalego" placeholder="descripcion en galego" required="required"></textarea>
           </div>
         </div>
 
 
         <div class="form-group row">
           <div class="container">
-            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir Producto</button>
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir Feria</button>
           </div>
         </div>
       </form>

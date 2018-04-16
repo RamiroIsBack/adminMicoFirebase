@@ -26,20 +26,29 @@
             <a class="nav-link"  href='agregarCreacion.html'>agregar creacion</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='creaciones.html'>Creaciones</a>
+            <a class="nav-link" href='creaciones.html'>ver Creaciones</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href='agregarFeria.html'>agregar feria</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href='ferias.html'>Ferias</a>
+            <a class="nav-link" href='ferias.html'>ver Ferias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='contenido.html'>editar contenido</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='enlaces.html'>editar enlaces</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href='pedidos.html'>ver y editar Pedidos</a>
           </li>
         </ul>
       </div>
     </nav>
     <br/>
     <div class= 'jumbotron'>
-      <h2>hola Alba!</h2> <h4>introduce aqui todas las caracter'isticas de un nuevo dise'no y subelo a la base de datos</h4>
+      <h2>hola Alba!</h2> <h4>introduce aqui todas las caracter'isticas de un nuevo dise'no y subelo a la base de datos, el texto que aparece donde tienes que escribir es solo ilustrativo para que tengas un ejemplo<br/>Las fotos deberian ser todas del mismo tamano pero por lo menos las 2 fotos del mismo producto, eso fijo, porque si no al ajustar el tamano genera un movimiento raro</h4>
     </div>
     <!-- subir imagenes y datos de todo-->
     <div>
@@ -51,12 +60,29 @@
           </div>
         </div>
         <div class="form-group row">
+          <label  class="col-sm-4 form-control-label">nombre que aparecer'a como t'itulo en Gallego</label>
+          <div class="col-sm-8">
+            <input type="text" class="form-control" id="nombreGalego" placeholder="en galego" required="required">
+          </div>
+        </div>
+        <div class="form-group row">
           <label class="col-sm-4 form-control-label">el nombre de la foto sin espacios, foto grande 1600x1200 es perfecto</label>
           <div class="col-sm-4">
             <input type="file" class="form-control" id="pic" onChange = 'guardarArchivo()' required="required">
           </div>
           <div class="col-sm-4">
             <input type='text' class='form-control' id ='url' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoName' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-sm-4 form-control-label">Mete una segunda foto para mostrar otra vista del disen;o, igualmente, el nombre de la foto sin espacios, foto grande 1600x1200 es perfecto</label>
+          <div class="col-sm-4">
+            <input type="file" class="form-control" id="picSecundaria" onChange = 'guardarArchivoSecundario()' required="required">
+          </div>
+          <div class="col-sm-4">
+            <input type='text' class='form-control' id ='urlSecundaria' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
+            <input type='text' class='form-control' id ='archivoNameSecundario' placeholder="esto se rellena solo cuando metes la foto" readonly="readonly" required="required"></input>
           </div>
         </div>
         <div class="form-group row">
@@ -72,61 +98,32 @@
           </div>
         </div>
         <div class="form-group row">
+          <label class="col-sm-2 form-control-label">materiales en galego</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="materialesGalego" placeholder="tela de algodon con estampados de poliester" required="required">
+          </div>
+        </div>
+        <div class="form-group row">
           <label class="col-sm-2 form-control-label">descripcion</label>
           <div class="col-sm-10">
             <textarea type="text" rows="3" class="form-control" id="descripcion" placeholder="Esta nueva falda es un c'omodo dise;o totalmente adaptable a todo tipo de cinturas con lo que es talla 'unica. Hecha con una serie de telas que traje de un viaje a Paris" required="required"></textarea>
           </div>
         </div>
         <div class="form-group row">
-          <div class="col-sm-6">
-            <label class="col-sm-2">tipo</label>
-            <div class="col-sm-10 ">
-              <ul style="list-style-type: none;" >
-                <li><input type="radio" name="tipo" id="faldas" value="faldas" required="required" />faldas</li>
-                <li><input type="radio" name="tipo" id="bolsos" value="bolsos" required="required" />
-                  bolsos</li>
-                <li><input type="radio" name="tipo" id="libretas" value="libretas" required="required"/>libretas</li>
-                <li><input type="radio" name="tipo" id="monederos" value="monederos" required="required"/>monederos</li>
-                <li><input type="radio" name="tipo" id="fundasMovil" value="fundasMovil" required="required"/>fundas de movil</li>
-                <li><input type="radio" name="tipo" id="pinzas" value="pinzas" required="required"/>pinzas</li>
-                <li><input type="radio" name="tipo" id="pendientes" value="pendientes" required="required"/>pendientes</li>
-                <li><input type="radio" name="tipo" id="mochilas" value="mochilas" required="required"/>mochilas</li>
-                <li><input type="radio" name="tipo" id="chapas" value="chapas" required="required"/>chapas</li>
-              </ul>
-            </div>
+          <label class="col-sm-2 form-control-label">descripcion en galego</label>
+          <div class="col-sm-10">
+            <textarea type="text" rows="3" class="form-control" id="descripcionGalego" placeholder="descripcion en galego" required="required"></textarea>
           </div>
+        </div>
+        <div class="form-group row">
           <div class="col-sm-6">
-            <div class= 'container'>
-              <label class="col-sm-4">disponibilidad desde la pagina</label>
-              <div class="col-sm-8 ">
-                <ul >
-                  <li>
-                    <input type="radio" name="disponibilidad" id="proximamente" value="proximamente" required="required"/>proximamente
-                  </li>
-                  <li>
-                    <input type="radio" name="disponibilidad" id="si" value="si" required="required"/>si
-                  </li>
-                  <li>
-                    <input type="radio" name="disponibilidad" id="no" value="no" required="required"/>no
-                  </li>
-                </ul>
-              </div>
+            <div class="col-sm-12">
+              <button onclick='this.disabled =true ;seleccionarTipo()' class="btn btn-success text-center" style="display: block; width: 100%;">elegir tipo</button>
             </div>
-            <div class= 'container'>
-              <label class="col-sm-4">disponibilidad en Feria</label>
-              <div class="col-sm-8">
-                <ul >
-                  <li>
-                    <input type="radio" name="disponibilidadFeria" id="proximamenteFeria" value="proximamenteFeria" required="required"/>proximamente
-                  </li>
-                  <li>
-                    <input type="radio" name="disponibilidadFeria" id="siFeria" value="siFeria" required="required"/>si
-                  </li>
-                  <li>
-                    <input type="radio" name="disponibilidadFeria" id="noFeria" value="noFeria" required="required"/>no
-                  </li>
-                </ul>
-              </div>
+
+
+            <div class="col-sm-11 " id='radioHome'>
+
             </div>
           </div>
         </div>
