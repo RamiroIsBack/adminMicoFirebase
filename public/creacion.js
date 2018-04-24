@@ -120,6 +120,78 @@ var seleccionarTipo = function(){
   }
   )
 }
+var opcionesRespiro = ()=>{
+  var query = dataBase.ref('contenidos/creaciones/respiro')
+  query.once('value',function(snapshot){
+    let respiroData = snapshot.val()
+
+    var ulRespiro = document.getElementById('respiro')
+    let liRespiro = document.createElement('li')
+
+    var buttonActivar =document.createElement('button')
+    buttonActivar.setAttribute('id','activar')
+    buttonActivar.setAttribute('onclick','respiroAction(this.id)')
+    buttonActivar.setAttribute('class', 'btn-info')
+    buttonActivar.appendChild(document.createTextNode('volver a activar la tienda'))
+
+    var buttonDesactivar =document.createElement('button')
+    buttonDesactivar.setAttribute('id','desactivar')
+    buttonDesactivar.setAttribute('onclick','respiroAction(this.id)')
+    buttonDesactivar.setAttribute('class', 'btn-danger')
+    buttonDesactivar.appendChild(document.createTextNode('No permitir la compra'))
+    if(respiroData.activo){
+
+      var inputMensaje = document.createElement('textarea')
+      inputMensaje.type = 'text'
+      inputMensaje.setAttribute('id','mensaje')
+      inputMensaje.setAttribute('placeholder','mensaje mientras no funciona la tienda')
+      var inputMensajeGalego = document.createElement('textarea')
+      inputMensajeGalego.type = 'text'
+      inputMensajeGalego.setAttribute('id','mensajeGalego')
+      inputMensajeGalego.setAttribute('placeholder','mensaje en Galego')
+      liRespiro.appendChild(inputMensaje)
+      liRespiro.appendChild(inputMensajeGalego)
+      liRespiro.appendChild(buttonDesactivar)
+    }else{
+      liRespiro.appendChild(buttonActivar)
+
+    }
+    //el li en el ul
+    ulRespiro.appendChild(liRespiro)
+  })
+}
+respiroAction= (id) =>{
+  if(id ==='desactivar'){
+    let mensaje = document.getElementById('mensaje').value
+    let mensajeGalego = document.getElementById('mensajeGalego').value
+    dataBase.ref('contenidos/creaciones/respiro')
+      .update({
+        activo:false,
+        mensaje : mensaje,
+        mensajeGalego: mensajeGalego,
+      }).then (function(){
+        alert ('puedes tomarte un respiro, la tienda esta desactivada')
+        window.location = 'creaciones.html'
+
+      }).catch(function(error){
+        alert ('no se pudo rebajar el elemento '+ error)
+      })
+  }
+  if(id==='activar'){
+    dataBase.ref('contenidos/creaciones/respiro')
+      .update({
+        activo:true,
+        mensaje : '',
+        mensajeGalego: false,
+      }).then (function(){
+        alert ('la tienda en pleno funcionamiento!!')
+        window.location = 'creaciones.html'
+
+      }).catch(function(error){
+        alert ('no se pudo rebajar el elemento '+ error)
+      })
+  }
+}
 //leer elementos
 var imprimirCreaciones = function(){
   var query = dataBase.ref('creaciones/')

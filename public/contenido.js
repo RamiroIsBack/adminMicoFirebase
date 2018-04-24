@@ -304,14 +304,16 @@ function subirNuevoTipo(event){
   //a la base de datos y recibir el then en la promesa
   event.preventDefault()
   var tipo = document.getElementById('nuevoTipo').value
-  escribirsubirNuevoTipo(tipo)
+  let tipoGalego = document.getElementById('nuevoTipoGalego').value
+  escribirsubirNuevoTipo(tipo,tipoGalego)
 }
 //crear nuevoTipo
 
-var escribirsubirNuevoTipo = function(tipo){
+var escribirsubirNuevoTipo = function(tipo,tipoGalego){
   dataBase.ref('contenidos/creaciones/tipo/'+tipo ).set({
     descripcionTipo: '',
     tipo: tipo,
+    tipoGalego:tipoGalego,
     id:'',
     timeStamp: Date.now(),
 
@@ -339,10 +341,8 @@ function subirTxtTipo(event){
 //crear descripcionTipo
 
 var escribirsubirTxtTipo = function(descripcionTipo ,tipo){
-  dataBase.ref('contenidos/creaciones/tipo/'+tipo ).set({
+  dataBase.ref('contenidos/creaciones/tipo/'+tipo ).update({
     descripcionTipo: descripcionTipo,
-    tipo: tipo,
-    id:'',
     timeStamp: Date.now(),
 
   }).then (function(){
@@ -811,49 +811,9 @@ imprimirPedidoDB = function(){
 
   })
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//SUBIR TITULO Y EXPLICACION DE REGISTRARSE CON MICO
-
-function SubirTituloYexplicacionPostVenta(event){
-  //cogemos el evento para que no se cambie de pagina antes de hacer el push
-  //a la base de datos y recibir el then en la promesa
-  event.preventDefault()
-  let postVentaTitulo = document.getElementById('postVentaTitulo').value
-  var postVentaInfo = document.getElementById('postVentaInfo').value
-  escribirDescripcionPostVenta(postVentaTitulo , postVentaInfo)
-}
-//crear descripcionTipo
-
-var escribirDescripcionPostVenta = function(postVentaTitulo,postVentaInfo){
-  dataBase.ref('contenidos/postVenta/descripcion').set({
-    postVentaInfo: postVentaInfo,
-    postVentaTitulo:postVentaTitulo,
-    id:'',
-    timeStamp: Date.now(),
-
-  }).then (function(){
-    alert ('se ha agregado correctamente el elemento a la base de datos')
-    window.location = 'contenido.html'
-
-  }).catch(function(error){
-    alert ('no se pudo introducir el elemento'+ error)
-  })
-
-}
-
-//leer tipo Creaciones
-imprimirPostVentaDB = function(){
-  var ref = dataBase.ref('contenidos/postVenta/descripcion')
-  ref.once('value').then(function(snapshot){
-    let data =snapshot.val()
-    document.getElementById('postVentaTituloDB').value = data.postVentaTitulo
-    document.getElementById('postVentaInfoDB').value = data.postVentaInfo
-
-  })
-}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

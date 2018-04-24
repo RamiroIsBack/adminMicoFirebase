@@ -37,11 +37,17 @@
           <li class="nav-item active" style='border-style: inset'>
             <a class="nav-link" href='contenido.html'>editar contenido</a>
           </li>
+          <li class="nav-item" >
+            <a class="nav-link" href='contenidoGalego.html'>contenido Galego</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href='enlaces.html'>editar enlaces</a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href='pedidos.html'>ver y editar Pedidos</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" href='usuarios.html'>ver y editar Usuarios</a>
           </li>
         </ul>
       </div>
@@ -283,6 +289,13 @@
             <div class="col-sm-8 form-group row">
               <input type="text" rows="4" class="form-control" id="nuevoTipo" placeholder="nombre del tipo de creacion" required="required"></input>
             </div>
+            <div class="col-sm-4">
+              <h5 style="text-align: center;">Nombre del tipo de creacion en Galego</h5>
+            </div>
+            <div class="col-sm-8 form-group row">
+              <input type="text" rows="4" class="form-control" id="nuevoTipoGalego" placeholder="nombre en Galego" required="required"></input>
+            </div>
+
 
         </div>
         <div class="row">
@@ -463,7 +476,7 @@
     <br/>
 
 
-    <h3>registrarse </h3>
+    <h3>REGISTRARSE </h3>
 
     <br/>
     <div class= "container" style="border:1px solid #cecece;">
@@ -539,15 +552,13 @@
 
     <br/>
 
-    <h3>Comprar con Mico </h3>
+    <h3>CARRITO </h3>
 
     <div class= "container" style="border:1px solid #cecece;">
-      <h4 style="text-align: center;">titulo y explicacion de lo q es comprar con Mico:</h4>
-      <h5>como los materiales son de alguna forma o la forma de confeccionar las prendas es local... algo que haga sentir bien al que esté realizando la compra :)
-      </h5>
+
       <form onsubmit="SubirTituloYexplicacionPedido(event)">
         <div class=" form-group row">
-          <h5>titulo de la pagina para pedidos</h5>
+          <h5>mensaje en el carrito mensaje corto </h5>
           <textarea type="text" rows="1" class="form-control" id="pedidoTitulo" placeholder="Realizar tu pedido con Mico es fácil y comprometido con tu entorno" required="required"></textarea>
         </div>
         <div class="form-group row" style="background-color: #F2F2F2">
@@ -562,7 +573,7 @@
             <button type="button" onclick='imprimirPedidoDB()' class="col-sm-5 col-sm-offset-4 btn btn-success" >ver titulo y explicacion de Pedido en base de datos</button>
         </div>
         <div class=" form-group row">
-          <h5>más informacion (letra más pequeña)</h5>
+          <h5>más informacion (no visible en el movil xq no hay mucho sitio) </h5>
           <textarea type="text" rows="3" class="form-control" id="pedidoInfo" placeholder="Mico Creaciones tiene como objetivo hacer de tu compra un proceso fácil y cercano, te iremos guiando durante la compra y porsupuesto cualquier duda que tengas , no dudes en contactar con nosotros y trataremos de resolverlo" required="required"></textarea>
         </div>
         <div class="form-group row" style="background-color: #F2F2F2">
@@ -583,49 +594,8 @@
     </div>
 
     <br/>
-    <div class= "container" style="border:1px solid #cecece;">
-      <h4 style="text-align: center;">mensaje post venta y condiciones de devolución:</h4>
 
-      <form onsubmit="SubirTituloYexplicacionPostVenta(event)">
-        <div class=" form-group row">
-          <h5>titulo</h5>
-          <textarea type="text" rows="2" class="form-control" id="postVentaTitulo" placeholder="Gracias por confiar en nosotros!
-          seguiremos trabajando duro para mejorar la calidad y condiciones de nuestros productos" required="required"></textarea>
-        </div>
-        <div class="form-group row" style="background-color: #F2F2F2">
-          <div class="col-sm-3">
-            <p  class="form-control-label">contenido en base de datos: </p>
-          </div>
-          <div class="col-sm-9">
-            <textarea type="text" rows="2" id = 'postVentaTituloDB' class="form-control" placeholder="titulo de post venta en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
-          </div>
-        </div>
-        <div class="form-group row">
-            <button type="button" onclick='imprimirPostVentaDB()' class="col-sm-5 col-sm-offset-4 btn btn-success" >ver titulo y explicacion de Pedido en base de datos</button>
-        </div>
-        <div class=" form-group row">
-          <h5>condiciones (letra más pequeña)</h5>
-          <textarea type="text" rows="4" class="form-control" id="postVentaInfo" placeholder="Si hubiese cualquier problema de manufactura en el producto adquirido, Mico se hace cargo del coste del envio de vuelta y el posterior envio del producto reparado o sustituido sengún el caso.
-          Si el problema es le tallaje o que no te convence , siempre puedes devolverlo (si simplemente te lo has probado, tiene la etiqueta y no está deñado) eso sí , el envio corre de tu cuenta esta vez " required="required"></textarea>
-        </div>
-        <div class="form-group row" style="background-color: #F2F2F2">
-          <div class="col-sm-3">
-            <p  class="form-control-label">contenido en base de datos: </p>
-          </div>
-          <div class="col-sm-9">
-            <textarea type="text" rows="4" id = 'postVentaInfoDB' class="form-control" placeholder="aqui aparecerá el texto sobre post venta que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="container">
-            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir titulo e informacion post venta</button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <br/>
-
+    <h3>CAROUSELL</h3>
     <div class= "container" style="border:1px solid #cecece;">
       <h4 style="text-align: center;">Fotos para corousell 1</h4>
       <form name="1" onsubmit="SubirPicCarousell(event)">

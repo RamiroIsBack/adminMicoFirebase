@@ -25,7 +25,7 @@
         <li class="nav-item " >
           <a class="nav-link"  href='agregarCreacion.html'>agregar creacion</a>
         </li>
-        <li class="nav-item active" style='border-style: inset'>
+        <li class="nav-item" >
           <a class="nav-link" href='creaciones.html'>ver Creaciones</a>
         </li>
         <li class="nav-item">
@@ -46,24 +46,20 @@
         <li class="nav-item ">
           <a class="nav-link" href='pedidos.html'>ver y editar Pedidos</a>
         </li>
-        <li class="nav-item" >
+        <li class="nav-item active" style='border-style: inset'>
           <a class="nav-link" href='usuarios.html'>ver y editar Usuarios</a>
         </li>
       </ul>
     </div>
   </nav>
   <hr/>
-  <div class="container col-sm-8 pull-right">
-    <button onclick='this.disabled =true; opcionesRespiro()' class="btn btn-warning text-center" style="display: block; width: 100%;">Dame un respiro!!</button>
-
-    <ul class ='list-group' id = 'respiro'>
-
-    </ul>
+  <div class="container">
+    <h4>Si vas a eliminar un usuario, por petici'on del mismo o por m'as de 2 anos de inactividad, hazlo desde aqui Y recuerda que tambi'en habr'a que borrar todas sus ligaduras con Google Firebase asi q apunta temporalmente el identificador de usuario para buscarlo</h4>
   </div>
 
   <div class="container">
 
-    <button onclick='this.disabled =true; imprimirCreaciones()' class="btn btn-success text-center" style="display: block; width: 100%;">Mostrar creaciones de la base de datos</button>
+    <button onclick='this.disabled =true; imprimirUsuarios()' class="btn btn-success text-center" style="display: block; width: 100%;">Mostrar usuarios</button>
   </div>
   <ul class ='list-group' id = 'lista'>
 
@@ -73,7 +69,7 @@
 
 <script src='https://www.gstatic.com/firebasejs/4.1.3/firebase.js'></script>
 
-<script type="text/javascript" src='creacion.js'></script>
+<script type="text/javascript" src='usuarios.js'></script>
 
 <!-- CDN d bootstrapNative fuck JQuerry!-->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.11/bootstrap-native-v4.min.js"></script>

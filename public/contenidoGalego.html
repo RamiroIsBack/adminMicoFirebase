@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-US">
+<head>
+  <title>
+    Mico Admin
+  </title>
+  <meta charset='utf-8' />
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+</head>
+<body>
+  <br/>
+  <div class ='container'>
+    <nav class="navbar bg-faded">
+      <div class='container-fluid'>
+        <ul class = 'nav nav-pills navbar-right'>
+          <li class="nav-item pull-right">
+           <button onclick = 'salir() ' type="button" class="btn btn-danger">cerrar sesion</button>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li class="nav-item ">
+            <a class="nav-link"  href='agregarCreacion.html'>agregar creacion</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='creaciones.html'>ver Creaciones</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href='agregarFeria.html'>agregar feria</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='ferias.html'>ver Ferias</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='contenido.html'>editar contenido</a>
+          </li>
+          <li class="nav-item active" style='border-style: inset'>
+            <a class="nav-link" href='contenidoGalego.html'>contenido Galego</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href='enlaces.html'>editar enlaces</a>
+          </li>
+          <li class="nav-item ">
+            <a class="nav-link" href='pedidos.html'>ver y editar Pedidos</a>
+          </li>
+          <li class="nav-item" >
+            <a class="nav-link" href='usuarios.html'>ver y editar Usuarios</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <br/>
+    <div class= 'jumbotron'>
+      <h2>hola Alba!</h2> <h4>los textos que tengan una versi'on en Galego los editar'as aqui </h4>
+    </div>
+    <!-- subir imagenes y datos de todo-->
+    <h3>titulo, breve descripcion sobre Mico en pagina principal en Galego</h3>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirDescripcionMico(event)">
+        <div class="form-group row">
+          <label  class="col-sm-3 form-control-label">una linea que defina Mico</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="2" class="form-control" id="headlineMico" placeholder="Descubre la fusión entre la artesania clásica gallega y lo innovador de los diseños más vanguardistas"  required="required"></textarea>
+          </div>
+        </div>
+        <div class ='form-group row' style="background-color: #F2F2F2">
+          <div class="col-sm-4">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-8" >
+           <textarea type='text' rows="2" class='form-control' id ='headlineMicoBD' placeholder="esto se rellena cuando des al boton verde" readonly="readonly" required="required"></textarea>
+          </div>
+        </div>
+        <div class=" form-group row">
+          <label  class="col-sm-3 form-control-label">habla un poco m'as sobre Mico, 4 o 5 lineas (esta letra es m'as pequena en la pagina)</label>
+          <div class="col-sm-9">
+            <textarea type="text" rows="4" class="form-control" id="desarrolloMico" placeholder="Los productos de Mico no te dejarán indiferente, aunamos todos los esfuerzos en conseguir un producto de alta calidad, con diseño y desarrollo local y un precio asequible a todos los bolsillos, echa un vistazo y anímate a visitarnos en la próxima feria" required="required"></textarea>
+          </div>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-1 col-sm-offset-3">
+            <button type="button" onclick='imprimirHeadlineMicoBD()' class="btn btn-success pull-right" >ver titulo y desarrollo en base de datos:</button>
+          </div>
+          <div class="col-sm-8">
+            <textarea type="text" rows="4" id = 'desarrolloMicoDB' class="form-control" placeholder="aqui aparecerá el desarrollo sobre Mico en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir titulo y descripcion general sobre Mico</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirDescripcionTaller(event)">
+        <h4 style="text-align: center;">Taller (descripcion larga)</h4>
+        <div class=" form-group row">
+          <textarea type="text" rows="4" class="form-control" id="descripcionTaller" placeholder="Introduce aqui todo el texto que quieras que salga en el ·Taller·
+          puedes poner todo tipo de carcteres, saltos de linea, mayusculas, lo que quieras" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-1 col-sm-offset-3">
+            <button type="button" onclick='imprimirDescripcionTallerBD()' class="btn btn-success pull-right" >ver texto anterior en base de datos:</button>
+          </div>
+          <div class="col-sm-8">
+            <textarea type="text" rows="4" id = 'descripcionTallerDB' class="form-control" placeholder="aqui aparecerá el texto de Taller que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir la descripcion general de Taller</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+
+      <form onsubmit="subirTxtTipo(event)">
+        <div class=" form-group row">
+          <h4 style="text-align: center;">descripcion de los tipos de creacion</h4>
+          <h6 style="text-align: center;">puedes cambiar la descripcion de algun tipo de creacion ya creado, pulsa en elegir tipo para ver los tipos que hay en la base de datos y selecciona uno</h6>
+          <div class="col-sm-6">
+            <div class="col-sm-12">
+              <button onclick='this.disabled =true ;seleccionarTipo()' class="btn btn-success text-center" style="display: block; width: 100%;">elegir tipo</button>
+            </div>
+
+
+            <div class="col-sm-11 " id='radioHome'>
+
+            </div>
+          </div>
+          <div class="col-sm-10">
+            <div class=" form-group row">
+              <textarea type="text" rows="4" class="form-control" id="descripcionTipo" placeholder="Introduce aqui la descripcion del tipo de creacion que hayas elegido de entre las opciones de la izquierda" required="required"></textarea>
+            </div>
+            <div class="form-group row" style="background-color: #F2F2F2">
+              <div class="col-sm-1 col-sm-offset-3">
+                <button type="button" onclick='imprimirDescripcionTipoBD()' class="btn btn-success pull-right" >ver descripcion en base de datos:</button>
+              </div>
+              <div class="col-sm-8">
+                <textarea type="text" rows="4" id = 'txtTipoDB' class="form-control" placeholder="aqui aparecer'a la descripcion del tipo de producto que hayas seleccionando a la izquiera (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir la descripcion del tipo seleccionado</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirDescripcionConocenos(event)">
+        <h4 style="text-align: center;">Sobre mi (descripcion larga)</h4>
+        <div class=" form-group row">
+          <textarea type="text" rows="4" class="form-control" id="descripcionConocenos" placeholder="Introduce aqui todo el texto que quieras que salga en el ·Conocenos·
+          puedes poner todo tipo de carcteres, saltos de linea, mayusculas, lo que quieras" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-1 col-sm-offset-3">
+            <button type="button" onclick='imprimirDescripcionConocenosBD()' class="btn btn-success pull-right" >ver texto anterior en base de datos:</button>
+          </div>
+          <div class="col-sm-8">
+            <textarea type="text" rows="4" id = 'descripcionConocenosDB' class="form-control" placeholder="aqui aparecerá el texto de Conocenos que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir la descripcion general de sobre mi</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+
+    <br/>
+
+    <div class= "container" style="border:1px solid #cecece;">
+      <form onsubmit="subirDescripcionContacto(event)">
+        <h4 style="text-align: center;">Contacto (descripcion larga)</h4>
+        <div class=" form-group row">
+          <textarea type="text" rows="4" class="form-control" id="descripcionContacto" placeholder="Introduce aqui todo el texto que quieras que salga en el ·Contacto·
+          puedes poner todo tipo de carcteres, saltos de linea, mayusculas, lo que quieras" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-1 col-sm-offset-3">
+            <button type="button" onclick='imprimirDescripcionContactoBD()' class="btn btn-success pull-right" >ver texto anterior en base de datos:</button>
+          </div>
+          <div class="col-sm-8">
+            <textarea type="text" rows="4" id = 'descripcionContactoDB' class="form-control" placeholder="aqui aparecerá el texto de Contacto que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;" >Subir la descripcion general de Contacto</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+
+    <br/>
+
+
+    <h3>registrarse </h3>
+
+    <br/>
+    <div class= "container" style="border:1px solid #cecece;">
+      <h4 style="text-align: center;">titulo y explicacion breve del tratamiento de los datos:</h4>
+      <h5>aunq luego hay un link para todo el texto de privacidad de datos aqui hacemos un miniresumen ya que tiene que dar su consentimiento
+      </h5>
+      <form onsubmit="SubirTituloYexplicacionRegistrarse(event)">
+        <div class=" form-group row">
+          <h5>titulo de la pagina para registrarse</h5>
+          <textarea type="text" rows="1" class="form-control" id="registrarseTitulo" placeholder="Esto solo te llevará un momento " required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="1" id = 'registrarseTituloDB' class="form-control" placeholder="titulo de registrarse en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+            <button type="button" onclick='imprimirRegistrarseDB()' class="col-sm-5 col-sm-offset-4 btn btn-success" >ver titulo y avance de privacidad de datos</button>
+        </div>
+        <div class=" form-group row">
+          <textarea type="text" rows="3" class="form-control" id="registrarseInfo" placeholder="Porfavor introduce tus datos.
+          Al registrarte podrás realizar tus pedidos, hacer encargos a ferias o suscribirte a la lista de emails exclusiva de amigos de Mico donde te informaremos de las últimas novedades" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="3" id = 'registrarseInfoDB' class="form-control" placeholder="aqui aparecerá el texto sobre lo que se puede obtener al registrarse que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir titulo e informacion sobre registrarse</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+    <h3>CARRITO </h3>
+
+    <div class= "container" style="border:1px solid #cecece;">
+
+      <form onsubmit="SubirTituloYexplicacionPedido(event)">
+        <div class=" form-group row">
+          <h5>mensaje en el carrito mensaje corto</h5>
+          <textarea type="text" rows="1" class="form-control" id="pedidoTitulo" placeholder="Realizar tu pedido con Mico es fácil y comprometido con tu entorno" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="1" id = 'pedidoTituloDB' class="form-control" placeholder="titulo de Pedido en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+        <div class="form-group row">
+            <button type="button" onclick='imprimirPedidoDB()' class="col-sm-5 col-sm-offset-4 btn btn-success" >ver titulo y explicacion de Pedido en base de datos</button>
+        </div>
+        <div class=" form-group row">
+          <h5>más informacion (no visible en el movil xq no hay mucho sitio)</h5>
+          <textarea type="text" rows="3" class="form-control" id="pedidoInfo" placeholder="Mico Creaciones tiene como objetivo hacer de tu compra un proceso fácil y cercano, te iremos guiando durante la compra y porsupuesto cualquier duda que tengas , no dudes en contactar con nosotros y trataremos de resolverlo" required="required"></textarea>
+        </div>
+        <div class="form-group row" style="background-color: #F2F2F2">
+          <div class="col-sm-3">
+            <p  class="form-control-label">contenido en base de datos: </p>
+          </div>
+          <div class="col-sm-9">
+            <textarea type="text" rows="3" id = 'pedidoInfoDB' class="form-control" placeholder="aqui aparecerá el texto sobre realizar pedidos que hay en la base de datos (despues de apretar el boton verde)" readonly="readonly" style="background-color: #F2F2F2" ></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <div class="container">
+            <button type="submit" class="btn btn-primary text-center" style="display: block; width: 100%;">Subir titulo y explicacion de pantalla de comprar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <br/>
+
+  </div>
+</body>
+
+
+<script src='https://www.gstatic.com/firebasejs/4.1.3/firebase.js'></script>
+
+<script type="text/javascript" src='contenidoGalego.js'></script>
+
+<!-- CDN d bootstrapNative fuck JQuerry!-->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap.native/2.0.11/bootstrap-native-v4.min.js"></script>
+
+
+</html>
